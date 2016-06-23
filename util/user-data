@@ -3,13 +3,15 @@ package_upgrade: true
 password: nutanix/4u
 chpasswd: { expire: False }
 ssh_pwauth: True
-manage-resolv-conf: true
-resolv_conf:
-  nameservers: ['192.168.178.1', '8.8.8.8']
-  searchdomains:
-    - fin.local
-  domain: fin.local
-  options:
-    rotate: true
-    timeout: 1
+bootcmd: 
+- echo "nameserver 192.168.178.1" | sudo tee -a /etc/resolvconf/resolv.conf.d/head 
+- sudo resolvconf -u 
+runcmd:
+- sudo apt-get install apt-transport-https ca-certificates
+- sudo sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+- echo deb https://apt.dockerproject.org/repo ubuntu-trusty main > /etc/apt/sources.list.d/docker.list
+- sudo apt-get update
+- sudo apt-get install linux-image-extra-3.13.0-77-generic
+- sudo apt-get install docker-engine
+- sudo service docker start
 final_message: "The system is finally up, after  seconds"
