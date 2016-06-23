@@ -1,9 +1,9 @@
-instance-id: iid-NutanixCE-backup; 
+instance-id: iid-NutanixCE-backup
 network-interfaces: |
  iface eth0 inet static 
  address 192.168.178.201  
  network 192.168.178.0 
  netmask 255.255.255.0  
  broadcast 192.168.178.255  
- gateway 192.168.178.1; 
- local-hostname: NTNXCE-BACKUP  
+ gateway 192.168.178.1
+local-hostname: NTNXCE-BACKUP  
