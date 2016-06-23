@@ -1,5 +1,6 @@
 instance-id: iid-NutanixCE-backup
 network-interfaces: |
+ auto eth0
  iface eth0 inet static 
  address 192.168.178.201  
  network 192.168.178.0 

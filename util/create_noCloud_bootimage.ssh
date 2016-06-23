@@ -3,6 +3,7 @@
 cat << EOF > meta-data
 instance-id: iid-NutanixCE-backup
 network-interfaces: |
+ auto eth0
  iface eth0 inet static 
  address 192.168.178.201  
  network 192.168.178.0 
@@ -23,7 +24,7 @@ bootcmd:
 - echo "nameserver 192.168.178.1" | sudo tee -a /etc/resolvconf/resolv.conf.d/head 
 - sudo resolvconf -u 
 runcmd:
-- ifup eth0
+- sudo ifup eth0
 - sudo apt-get install apt-transport-https ca-certificates
 - sudo sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 - echo deb https://apt.dockerproject.org/repo ubuntu-trusty main > /etc/apt/sources.list.d/docker.list
